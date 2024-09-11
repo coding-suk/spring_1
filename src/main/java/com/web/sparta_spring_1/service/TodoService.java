@@ -4,7 +4,6 @@ import com.web.sparta_spring_1.dto.*;
 import com.web.sparta_spring_1.entity.Todo;
 import com.web.sparta_spring_1.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
-import org.antlr.v4.runtime.tree.pattern.TokenTagToken;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,5 +44,11 @@ public class TodoService {
 
         todo.update(requestDto.getName());
         return new TodoUpdateResponseDto(todo.getId(), todo.getName(), todo.getPw());
+    }
+
+    public void deleteTodo(Long todoId) {
+        Todo todo = todoRepository.findById(todoId).orElseThrow(()-> new NullPointerException("보드가 없습니다"));
+
+        todoRepository.delete(todo);
     }
 }

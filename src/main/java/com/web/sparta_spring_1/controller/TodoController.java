@@ -31,9 +31,16 @@ public class TodoController {
         return todoService.detailTodo(todoId);
     }
 
+    // 수정
     @PutMapping("/todos/{todoId}")
     public TodoUpdateResponseDto updateTodo(@PathVariable Long todoId, @RequestBody TodoUpdateRequestDto requestDto) {
         return todoService.updateTodo(todoId, requestDto);
+    }
+
+    //삭제
+    @DeleteMapping("/todos/{todoId}")
+    public void deleteTodo(@PathVariable Long todoId) {
+        todoService.deleteTodo(todoId);
     }
 
 }
